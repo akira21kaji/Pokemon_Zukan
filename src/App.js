@@ -4,6 +4,7 @@ import { getAllPokemon } from "./utils/pokemon";
 import { getPokemon } from "./utils/pokemon";
 import Card from "./components/Card/Card";
 import Navbar from "./components/Navbar/Navbar";
+import ReactLoading from "react-loading";
 
 function App() {
   const initialURL = "https://pokeapi.co/api/v2/pokemon";
@@ -65,7 +66,13 @@ function App() {
       <Navbar />
       <div className="App">
         {loading ? (
-          <h1>ロード中・・・</h1>
+          <ReactLoading
+            type="spinningBubbles"
+            color="black"
+            height={"10%"}
+            width={"10%"}
+            className="loading"
+          />
         ) : (
           <>
             <div className="pokemonCardContainer">
@@ -74,8 +81,16 @@ function App() {
               })}
             </div>
             <div className="btn">
-              <button onClick={handlePrevPage}>前へ</button>
-              <button onClick={handleNextPage}>次へ</button>
+              {prevURL === null ? (
+                <button className="isTop">前へ</button>
+              ) : (
+                <button onClick={handlePrevPage} className="isNotTop">
+                  前へ
+                </button>
+              )}
+              <button onClick={handleNextPage} className="isNotTop">
+                次へ
+              </button>
             </div>
           </>
         )}
