@@ -38,11 +38,11 @@
   box-shadow: 6px 9px 15px -2px #777777;
   border-radius: 5px;
   color: white;
-  cursor: pointer;
-  transition: all 0.3s;
+  /* cursor: pointer; */
+  /* transition: all 0.3s; */
 }
 
-.btn button:hover {
+.btn button.isNotTop:hover {
   transform: translateY(5px);
   box-shadow: none;
 }

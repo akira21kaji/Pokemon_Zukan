@@ -81,13 +81,12 @@ function App() {
               })}
             </div>
             <div className="btn">
-              {prevURL === null ? (
-                <button className="isTop">前へ</button>
-              ) : (
-                <button onClick={handlePrevPage} className="isNotTop">
-                  前へ
-                </button>
-              )}
+              <button
+                onClick={handlePrevPage}
+                className={prevURL === null ? "isTop" : "isNotTop"}
+              >
+                前へ
+              </button>
               <button onClick={handleNextPage} className="isNotTop">
                 次へ
               </button>
