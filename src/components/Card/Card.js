@@ -1,7 +1,12 @@
 import React from "react";
 import "./Card.css";
 
-const Card = ({ pokemon }) => {
+const Card = ({ pokemon, onClickCard }) => {
+  const setPokemonName = () => {
+    const id = pokemon.name;
+    onClickCard(id);
+  };
+
   return (
     <div className="card">
       <div className="cardImg">
@@ -31,6 +36,9 @@ const Card = ({ pokemon }) => {
           </p>
         </div>
       </div>
+      <button className="detailButton" onClick={setPokemonName}>
+        詳細
+      </button>
     </div>
   );
 };

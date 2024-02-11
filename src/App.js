@@ -5,6 +5,7 @@ import { getPokemon } from "./utils/pokemon";
 import Card from "./components/Card/Card";
 import Navbar from "./components/Navbar/Navbar";
 import ReactLoading from "react-loading";
+import Modal from "./components/Modal/Modal";
 
 function App() {
   const initialURL = "https://pokeapi.co/api/v2/pokemon";
@@ -12,6 +13,7 @@ function App() {
   const [pokemonData, setPokemonData] = useState([]);
   const [nextURL, setNextURL] = useState("");
   const [prevURL, setPrevURL] = useState("");
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
 
   useEffect(() => {
     const fetchPokemonData = async () => {
@@ -61,6 +63,17 @@ function App() {
     setLoading(false);
   };
 
+  // Cardのボタンをクリックした対象のポケモンの名前をidにセットする
+  const onClickCard = (id) => {
+    setSelectedPokemon(id);
+  };
+
+  // console.log(selectedPokemon);　//クリックしたポケモンの名前
+
+  // selectedPokemonの値がnull以外になったら、対象idと同じidの情報をとってくる
+  const modalData = pokemonData.find(({ name }) => name === selectedPokemon);
+  // console.log(modalData);
+
   return (
     <>
       <Navbar />
@@ -77,7 +90,9 @@ function App() {
           <>
             <div className="pokemonCardContainer">
               {pokemonData.map((pokemon, i) => {
-                return <Card key={i} pokemon={pokemon} />;
+                return (
+                  <Card key={i} pokemon={pokemon} onClickCard={onClickCard} />
+                );
               })}
             </div>
             <div className="btn">
@@ -94,6 +109,7 @@ function App() {
           </>
         )}
       </div>
+      {selectedPokemon === null ? <></> : <Modal modalData={modalData} />}
     </>
   );
 }
