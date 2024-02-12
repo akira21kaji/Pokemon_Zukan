@@ -1,11 +1,15 @@
 import React from "react";
 import "./Card.css";
 
-const Card = ({ pokemon, setClickCard, openModal }) => {
+const Card = ({ pokemon, setClickCard, onOpen }) => {
   const setPokemonName = () => {
     const id = pokemon.name;
     setClickCard(id);
-    openModal(true);
+  };
+
+  const handleClick = () => {
+    setPokemonName();
+    onOpen();
   };
 
   return (
@@ -37,7 +41,7 @@ const Card = ({ pokemon, setClickCard, openModal }) => {
           </p>
         </div>
       </div>
-      <button className="detailButton" onClick={setPokemonName}>
+      <button className="detailButton" onClick={handleClick}>
         詳細
       </button>
     </div>

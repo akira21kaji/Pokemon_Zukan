@@ -72,12 +72,12 @@ function App() {
   // console.log(selectedPokemon);　//クリックしたポケモンの名前
 
   //開閉ボタンをつくる
-  const openModal = (a) => {
-    setIsModalOpen(a);
+  const openModal = () => {
+    setIsModalOpen(true);
   };
 
-  const closeModal = (b) => {
-    setIsModalOpen(b);
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   // selectedPokemonの値がnull以外になったら、対象idと同じidの情報をとってくる
@@ -105,7 +105,7 @@ function App() {
                     key={i}
                     pokemon={pokemon}
                     setClickCard={setClickCard}
-                    openModal={openModal}
+                    onOpen={openModal}
                   />
                 );
               })}
@@ -125,7 +125,7 @@ function App() {
         )}
       </div>
       {isModaleOpen ? (
-        <Modal modalData={modalData} closeModal={closeModal} />
+        <Modal modalData={modalData} onClose={closeModal} />
       ) : (
         <></>
       )}
