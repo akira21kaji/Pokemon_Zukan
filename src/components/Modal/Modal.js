@@ -17,21 +17,22 @@ function Modal(modalData, { onClose }) {
               return <div>{ability.ability.name}</div>;
             })}
           </p>
-          <p>
-            {modalData.modalData.stats.map((stat) => {
-              return (
-                <table>
-                  <tr>
-                    <th>{stat.stat.name}</th>
-                    <td>{stat.base_stat}</td>
-                  </tr>
-                </table>
-              );
-            })}
-          </p>
-          <p>
-            <button onClick={onClose}>閉じる</button>
-          </p>
+          <div className="tableStats"></div>
+          {modalData.modalData.stats.map((stat) => {
+            return (
+              <table>
+                <tr>
+                  <th>stat name</th>
+                  <th>base stat</th>
+                </tr>
+                <tr>
+                  <td>{stat.stat.name}</td>
+                  <td>{stat.base_stat}</td>
+                </tr>
+              </table>
+            );
+          })}
+          <button onClick={onClose}>閉じる</button>
         </div>
       </div>
       ;
