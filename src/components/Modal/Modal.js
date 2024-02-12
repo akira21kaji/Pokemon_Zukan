@@ -1,6 +1,6 @@
 import React from "react";
 
-function Modal(modalData, { onClose }) {
+function Modal({ modalData, onClose }) {
   console.log(modalData);
 
   return (
@@ -8,17 +8,17 @@ function Modal(modalData, { onClose }) {
       <div className="detaileContainer">
         <div className="detailItem">
           <div className="modalImg">
-            <img src={modalData.modalData.sprites.front_default} alt="#" />
-            <img src={modalData.modalData.sprites.back_default} alt="#" />
+            <img src={modalData.sprites.front_default} alt="#" />
+            <img src={modalData.sprites.back_default} alt="#" />
           </div>
-          <h3>{modalData.modalData.name}</h3>
+          <h3>{modalData.name}</h3>
           <p>
-            {modalData.modalData.abilities.map((ability) => {
+            {modalData.abilities.map((ability) => {
               return <div>{ability.ability.name}</div>;
             })}
           </p>
           <div className="tableStats"></div>
-          {modalData.modalData.stats.map((stat) => {
+          {modalData.stats.map((stat) => {
             return (
               <table>
                 <tr>
