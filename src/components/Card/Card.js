@@ -1,10 +1,11 @@
 import React from "react";
 import "./Card.css";
 
-const Card = ({ pokemon, onClickCard }) => {
+const Card = ({ pokemon, setClickCard, openModal }) => {
   const setPokemonName = () => {
     const id = pokemon.name;
-    onClickCard(id);
+    setClickCard(id);
+    openModal(true);
   };
 
   return (

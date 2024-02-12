@@ -1,10 +1,10 @@
 import React from "react";
 
-function Modal(modalData, selectedPokemon) {
+function Modal(modalData, closeModal) {
   console.log(modalData);
 
-  const handleSelect = () => {
-    selectedPokemon(null);
+  const handleCloseModal = () => {
+    closeModal(false);
   };
 
   return (
@@ -14,7 +14,7 @@ function Modal(modalData, selectedPokemon) {
           <p>モーダルウィンドです</p>
           <h3>{modalData.modalData.name}</h3>
           <p>
-            <button>閉じる</button>
+            <button onClick={handleCloseModal}>閉じる</button>
           </p>
         </div>
       </div>

@@ -14,6 +14,7 @@ function App() {
   const [nextURL, setNextURL] = useState("");
   const [prevURL, setPrevURL] = useState("");
   const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [isModaleOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchPokemonData = async () => {
@@ -64,11 +65,20 @@ function App() {
   };
 
   // Cardのボタンをクリックした対象のポケモンの名前をidにセットする
-  const onClickCard = (id) => {
+  const setClickCard = (id) => {
     setSelectedPokemon(id);
   };
 
   // console.log(selectedPokemon);　//クリックしたポケモンの名前
+
+  //開閉ボタンをつくる
+  const openModal = (a) => {
+    setIsModalOpen(a);
+  };
+
+  const closeModal = (b) => {
+    setIsModalOpen(b);
+  };
 
   // selectedPokemonの値がnull以外になったら、対象idと同じidの情報をとってくる
   const modalData = pokemonData.find(({ name }) => name === selectedPokemon);
@@ -91,7 +101,12 @@ function App() {
             <div className="pokemonCardContainer">
               {pokemonData.map((pokemon, i) => {
                 return (
-                  <Card key={i} pokemon={pokemon} onClickCard={onClickCard} />
+                  <Card
+                    key={i}
+                    pokemon={pokemon}
+                    setClickCard={setClickCard}
+                    openModal={openModal}
+                  />
                 );
               })}
             </div>
@@ -109,7 +124,11 @@ function App() {
           </>
         )}
       </div>
-      {selectedPokemon === null ? <></> : <Modal modalData={modalData} />}
+      {isModaleOpen ? (
+        <Modal modalData={modalData} closeModal={closeModal} />
+      ) : (
+        <></>
+      )}
     </>
   );
 }
